@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelWorldwide - Discover Amazing Destinations</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>✈️ TravelWorldwide</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact Us</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div>
+                <h1>Explore the World with Confidence</h1>
+                <p>Discover breathtaking destinations tailored to your travel dreams. From pristine beaches to ancient temples and vibrant countries - your perfect adventure awaits.</p>
+                <button class="cta-button" onclick="scrollToRecommendations()">Start Your Journey</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Beautiful travel destinations around the world" crossorigin="anonymous">
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="introduction">
+        <div class="container">
+            <h2>Your Gateway to Unforgettable Adventures</h2>
+            <p>At TravelWorldwide, we specialize in creating personalized travel experiences that match your unique preferences and wanderlust spirit. Our expert-curated recommendations combine stunning destinations with practical insights, ensuring every journey becomes a cherished memory. Whether you seek relaxation on pristine beaches, spiritual enlightenment at ancient temples, or cultural immersion in diverse countries, we're here to guide your path to extraordinary adventures.</p>
+        </div>
+    </section>
+
+    <!-- Recommendation Categories -->
+    <section class="recommendations" id="recommendations">
+        <div class="container">
+            <h2>Choose Your Perfect Escape</h2>
+            <div class="recommendation-grid">
+                <!-- Beach Recommendations -->
+                <div class="recommendation-card" data-category="beaches">
+                    <div class="card-header">
+                        <h3>🏖️ Paradise Beaches</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="image-gallery">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tropical beach with crystal clear water and palm trees" class="gallery-image active" crossorigin="anonymous">
+                            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pristine white sand beach with turquoise waters" class="gallery-image" crossorigin="anonymous">
+                        </div>
+                        <div class="image-controls">
+                            <button class="prev-btn" onclick="changeImage(this, -1)">❮</button>
+                            <button class="next-btn" onclick="changeImage(this, 1)">❯</button>
+                        </div>
+                        <p>Escape to paradise with our handpicked selection of the world's most stunning beaches. From tropical hideaways to Mediterranean gems, find your perfect slice of heaven.</p>
+                        <button class="explore-btn" onclick="showDetails('beaches')">Explore Beaches</button>
+                    </div>
+                </div>
+
+                <!-- Temple Recommendations -->
+                <div class="recommendation-card" data-category="temples">
+                    <div class="card-header">
+                        <h3>🏛️ Sacred Temples</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="image-gallery">
+                            <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ancient temple complex with intricate architecture" class="gallery-image active" crossorigin="anonymous">
+                            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Majestic temple at golden hour" class="gallery-image" crossorigin="anonymous">
+                        </div>
+                        <div class="image-controls">
+                            <button class="prev-btn" onclick="changeImage(this, -1)">❮</button>
+                            <button class="next-btn" onclick="changeImage(this, 1)">❯</button>
+                        </div>
+                        <p>Journey through time and discover magnificent temples that showcase humanity's spiritual heritage and architectural mastery across different cultures and civilizations.</p>
+                        <button class="explore-btn" onclick="showDetails('temples')">Explore Temples</button>
+                    </div>
+                </div>
+
+                <!-- Country Recommendations -->
+                <div class="recommendation-card" data-category="countries">
+                    <div class="card-header">
+                        <h3>🌍 Amazing Countries</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="image-gallery">
+                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Scenic mountain landscape with traditional architecture" class="gallery-image active" crossorigin="anonymous">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vibrant cultural landmarks and cityscapes" class="gallery-image" crossorigin="anonymous">
+                        </div>
+                        <div class="image-controls">
+                            <button class="prev-btn" onclick="changeImage(this, -1)">❮</button>
+                            <button class="next-btn" onclick="changeImage(this, 1)">❯</button>
+                        </div>
+                        <p>Immerse yourself in diverse cultures and landscapes. Explore countries that offer unique experiences, from bustling metropolises to serene natural wonders.</p>
+                        <button class="explore-btn" onclick="showDetails('countries')">Explore Countries</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Recommendations Modal -->
+    <div class="modal" id="recommendationModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>✈️ TravelWorldwide</h3>
+                    <p>Your trusted companion for discovering extraordinary destinations and creating unforgettable memories around the globe.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Our Journey</h4>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TravelWorldwide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

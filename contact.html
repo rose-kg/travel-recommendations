@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TravelWorldwide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>✈️ TravelWorldwide</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">Contact Us</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Let's Plan Your Next Adventure</h1>
+            <p>Have questions about destinations or need personalized travel advice? Our travel experts are here to help make your dream trip a reality.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2>Send us a Message</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">What can we help you with? *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a topic</option>
+                                <option value="general">General Travel Inquiry</option>
+                                <option value="recommendation">Destination Recommendation</option>
+                                <option value="technical">Website Technical Support</option>
+                                <option value="partnership">Business Partnership</option>
+                                <option value="feedback">Feedback & Suggestions</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Tell us about your travel dreams, questions, or how we can assist you..."></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter">Subscribe to our newsletter for exclusive travel tips, destination guides, and special offers</label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="contact-info-section">
+                    <h2>Get in Touch</h2>
+                    
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">📧</div>
+                            <div class="info-content">
+                                <h3>Email Us</h3>
+                                <p>travelworldwide@gmail.com</p>
+                                <p>travelworldwide.info@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h3>Call Us</h3>
+                                <p>+27 76898743</p>
+                                <p>Monday-Friday: 9AM-7PM EST</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h3>Visit Our Office</h3>
+                                <p>456 Adventure Boulevard</p>
+                                <p>Travel City, TC 54321</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">🕒</div>
+                            <div class="info-content">
+                                <h3>Office Hours</h3>
+                                <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
+                                <p>Saturday: 10:00 AM - 5:00 PM</p>
+                                <p>Sunday: 12:00 PM - 4:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div class="faq-section">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <h4>How do you create personalized travel recommendations?</h4>
+                            <p>Our advanced algorithm analyzes your travel preferences, budget, interests, and past experiences to suggest destinations that perfectly match your travel style and dreams.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Is TravelWorldwide free to use?</h4>
+                            <p>Yes! Our core recommendation service is completely free. We also offer premium features like detailed itinerary planning and exclusive travel deals for enhanced experiences.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>How current is your destination information?</h4>
+                            <p>We continuously update our destination database with real-time information, recent traveler reviews, and current travel advisories to ensure accuracy and relevance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h3>Message Sent Successfully!</h3>
+            <p>Thank you for reaching out to TravelWorldwide. Our travel experts will respond within 24 hours to help plan your perfect adventure.</p>
+            <button onclick="closeSuccessMessage()">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>✈️ TravelWorldwide</h3>
+                    <p>Your trusted companion for discovering extraordinary destinations and creating unforgettable memories around the globe.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Our Journey</h4>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TravelWorldwide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
