@@ -1,258 +1,345 @@
+// Destination data with detailed information
+const destinations = {
+    beaches: [
+        {
+            name: "Bora Bora - French Polynesia",
+            image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            description: "An island in the Leeward group of the Society Islands of French Polynesia, an overseas collectivity of France located in the Pacific Ocean. Known for its stunning turquoise lagoon and luxury overwater bungalows.",
+            details: {
+                bestTime: "May to October (dry season)",
+                activities: "Snorkeling, scuba diving, lagoon tours, hiking Mount Otemanu",
+                temperature: "75-85°F (24-29°C)",
+                perfectFor: "Honeymooners, luxury travelers, water sports enthusiasts",
+                highlights: "Overwater bungalows, coral gardens, Mount Otemanu, lagoon excursions"
+            }
+        },
+        {
+            name: "Maldives - Indian Ocean Paradise",
+            image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/0b/a5/a6/caption.jpg?w=2400&h=-1&s=1&cx=1920&cy=1080&chk=v1_15c12bc8431b4bf1b61e",
+            description: "A tropical paradise consisting of 1,192 coral islands grouped in 26 atolls. Famous for crystal-clear waters, pristine white sand beaches, and world-class diving spots.",
+            details: {
+                bestTime: "November to April (dry season)",
+                activities: "Diving, snorkeling, dolphin watching, spa treatments, water sports",
+                temperature: "77-88°F (25-31°C)",
+                perfectFor: "Honeymooners, divers, luxury seekers, beach lovers",
+                highlights: "Overwater villas, manta ray diving, bioluminescent beaches, luxury resorts"
+            }
+        }
+    ],
+    temples: [
+        {
+            name: "Wat Benchamabophit - Thailand",
+            image: "https://hips.hearstapps.com/hmg-prod/images/marble-elephant-in-fully-carved-famous-sandstone-royalty-free-image-1602776763.jpg?crop=1xw:1xh;center,top&resize=980:*",
+            description: "Known as the Marble Temple, this stunning Buddhist temple in Bangkok showcases exquisite Thai architecture with intricate golden decorations, ornate carvings, and traditional red-tiled roofs. A masterpiece of Thai craftsmanship and spiritual design.",
+            details: {
+                bestTime: "November to March (cool and dry season)",
+                activities: "Temple exploration, meditation sessions, photography, cultural tours, monk chanting ceremonies",
+                temperature: "75-85°F (24-29°C)",
+                perfectFor: "Spiritual seekers, photographers, cultural enthusiasts, architecture lovers",
+                highlights: "Golden decorative elements, intricate Thai carvings, traditional architecture, peaceful courtyards, morning monk ceremonies"
+            }
+        },
+        {
+            name: "Kyoto Temples - Japan",
+            image: "https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            description: "Ancient capital of Japan, home to over 2,000 temples and shrines. Famous for its classical Buddhist temples, gardens, imperial palaces, and traditional wooden houses, showcasing Japan's spiritual heritage.",
+            details: {
+                bestTime: "March to May (spring) or September to November (autumn)",
+                activities: "Temple visits, meditation sessions, tea ceremonies, garden tours, cultural workshops",
+                temperature: "50-75°F (10-24°C) varies by season",
+                perfectFor: "Spiritual seekers, cultural enthusiasts, photographers, meditation practitioners",
+                highlights: "Fushimi Inari Shrine, Kinkaku-ji Golden Pavilion, Kiyomizu-dera Temple, Bamboo Grove"
+            }
+        }
+    ],
+    countries: [
+      {
+            name: "Japan - Land of the Rising Sun",
+            image: "https://ceylontoday.lk/wp-content/uploads/2023/01/1-19.jpg",
+            description: "An island nation in East Asia known for its unique blend of ancient traditions and cutting-edge technology. From bustling Tokyo to serene Kyoto temples, Japan offers diverse experiences for every traveler.",
+            details: {
+                bestTime: "March to May (spring) or September to November (autumn)",
+                activities: "Temple visits, cherry blossom viewing, hot springs, cultural experiences, city exploration",
+                temperature: "50-75°F (10-24°C) varies by season",
+                perfectFor: "Cultural enthusiasts, food lovers, tech enthusiasts, nature lovers, photographers",
+                highlights: "Mount Fuji, Tokyo Skytree, Kyoto temples, cherry blossoms, traditional ryokans, bullet trains"
+            }
+        },
+        {
+            name: "Iceland - Nordic Wonder",
+            image: "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+            description: "A Nordic island country known for its dramatic landscapes, including volcanoes, geysers, hot springs, and lava fields. Famous for the Northern Lights and the Blue Lagoon geothermal spa.",
+            details: {
+                bestTime: "June to August (summer) or September to March (Northern Lights)",
+                activities: "Northern Lights viewing, glacier hiking, hot springs, whale watching, volcano tours",
+                temperature: "32-55°F (0-13°C) varies by season",
+                perfectFor: "Adventure seekers, nature photographers, Northern Lights enthusiasts, geology lovers",
+                highlights: "Blue Lagoon, Northern Lights, Golden Circle, glaciers, waterfalls, volcanic landscapes"
+            }
+        }
+    ]
+};
 
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
+// Mobile navigation toggle
+function toggleMobileNav() {
     const navMenu = document.querySelector('.nav-menu');
+    const hamburger = document.querySelector('.hamburger');
     
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
- 
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
-    }
-});
-
-function scrollToRecommendations() {
-    const recommendationsSection = document.getElementById('recommendations');
-    if (recommendationsSection) {
-        recommendationsSection.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
 }
+
+// Initialize mobile navigation
+function initMobileNav() {
+    const hamburger = document.querySelector('.hamburger');
+    if (hamburger) {
+        hamburger.addEventListener('click', toggleMobileNav);
+    }
+    
+    // Close mobile nav when clicking on nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const navMenu = document.querySelector('.nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        });
+    });
+}
+
+// Image gallery functionality
 function changeImage(button, direction) {
     const card = button.closest('.recommendation-card');
     const images = card.querySelectorAll('.gallery-image');
     let currentIndex = 0;
-
+    
+    // Find current active image
     images.forEach((img, index) => {
         if (img.classList.contains('active')) {
             currentIndex = index;
         }
     });
     
-
+    // Remove active class from current image
     images[currentIndex].classList.remove('active');
     
+    // Calculate new index
     let newIndex = currentIndex + direction;
     if (newIndex >= images.length) {
         newIndex = 0;
     } else if (newIndex < 0) {
         newIndex = images.length - 1;
     }
-
+    
+    // Add active class to new image
     images[newIndex].classList.add('active');
 }
 
-setInterval(() => {
-    const cards = document.querySelectorAll('.recommendation-card');
-    cards.forEach(card => {
-        const nextBtn = card.querySelector('.next-btn');
-        if (nextBtn) {
-            changeImage(nextBtn, 1);
+// Auto-rotate images
+function autoRotateImages() {
+    const galleries = document.querySelectorAll('.image-gallery');
+    
+    galleries.forEach(gallery => {
+        const images = gallery.querySelectorAll('.gallery-image');
+        if (images.length > 1) {
+            setInterval(() => {
+                let currentIndex = 0;
+                images.forEach((img, index) => {
+                    if (img.classList.contains('active')) {
+                        currentIndex = index;
+                    }
+                });
+                
+                images[currentIndex].classList.remove('active');
+                const nextIndex = (currentIndex + 1) % images.length;
+                images[nextIndex].classList.add('active');
+            }, 5000); // Change image every 5 seconds
         }
     });
-}, 6000);
+}
+
+// Show detailed destination information
 function showDetails(category) {
     const modal = document.getElementById('recommendationModal');
     const modalContent = document.getElementById('modalContent');
     
-    let content = '';
+    let content = `<h2>${getCategoryTitle(category)}</h2>`;
     
-    switch(category) {
-        case 'beaches':
-            content = `
-                <h2>🏖️ Paradise Beach Destinations</h2>
-                <div class="modal-images">
-                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Maldives overwater bungalows" style="width: 100%; margin-bottom: 1rem; border-radius: 10px;" crossorigin="anonymous">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Caribbean crystal clear waters" style="width: 100%; margin-bottom: 1rem; border-radius: 10px;" crossorigin="anonymous">
+    destinations[category].forEach((destination, index) => {
+        content += `
+            <div class="destination-item">
+                <h4>${destination.name}</h4>
+                <div class="modal-images" style="margin-bottom: 1.5rem;">
+                    <img src="${destination.image}" alt="${destination.name}" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 15px;" crossorigin="anonymous">
                 </div>
-                <h3>Top Beach Paradise Recommendations:</h3>
-                <div class="destination-list">
-                    <div class="destination-item">
-                        <h4>🏝️ Maldives - Indian Ocean Paradise</h4>
-                        <p>Experience ultimate luxury in crystal-clear turquoise waters with pristine white sand beaches. The Maldives offers unparalleled overwater villa experiences and world-class diving opportunities among vibrant coral reefs.</p>
-                        <ul>
-                            <li><strong>Best time to visit:</strong> November to April (dry season)</li>
-                            <li><strong>Top activities:</strong> Snorkeling, scuba diving, spa treatments, sunset cruises</li>
-                            <li><strong>Average temperature:</strong> 80-86°F (27-30°C) year-round</li>
-                            <li><strong>Perfect for:</strong> Honeymoons, luxury getaways, underwater photography</li>
-                        </ul>
-                    </div>
-                    <div class="destination-item">
-                        <h4>🌴 Bora Bora, French Polynesia - Romantic Paradise</h4>
-                        <p>The crown jewel of the South Pacific, featuring iconic overwater bungalows surrounded by a stunning coral reef and lagoon. Mount Otemanu provides a dramatic backdrop to this tropical paradise.</p>
-                        <ul>
-                            <li><strong>Best time to visit:</strong> May to October (dry season)</li>
-                            <li><strong>Top activities:</strong> Water sports, hiking Mount Otemanu, cultural tours, pearl farm visits</li>
-                            <li><strong>Average temperature:</strong> 75-85°F (24-29°C)</li>
-                            <li><strong>Perfect for:</strong> Romance, adventure, luxury experiences</li>
-                        </ul>
-                    </div>
-                    <div class="destination-item">
-                        <h4>🏖️ Santorini, Greece - Volcanic Beach Beauty</h4>
-                        <p>Unique volcanic beaches with dramatic black and red sand, combined with stunning cliff-top villages and world-famous sunsets. Experience the perfect blend of beach relaxation and rich Mediterranean culture.</p>
-                        <ul>
-                            <li><strong>Best time to visit:</strong> April to October (warm weather)</li>
-                            <li><strong>Top activities:</strong> Wine tasting, historical site visits, sunset photography, beach hopping</li>
-                            <li><strong>Average temperature:</strong> 70-80°F (21-27°C)</li>
-                            <li><strong>Perfect for:</strong> Cultural exploration, photography, romantic getaways</li>
-                        </ul>
-                    </div>
+                <p style="margin-bottom: 1.5rem; color: #5d6d7e; line-height: 1.7;">${destination.description}</p>
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border-left: 4px solid #e74c3c;">
+                    <h5 style="color: #2c3e50; margin-bottom: 1rem; font-size: 1.2rem;">Travel Details:</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.8rem; color: #5d6d7e;"><strong>🗓️ Best Time to Visit:</strong> ${destination.details.bestTime}</li>
+                        <li style="margin-bottom: 0.8rem; color: #5d6d7e;"><strong>🎯 Activities:</strong> ${destination.details.activities}</li>
+                        <li style="margin-bottom: 0.8rem; color: #5d6d7e;"><strong>🌡️ Temperature:</strong> ${destination.details.temperature}</li>
+                        <li style="margin-bottom: 0.8rem; color: #5d6d7e;"><strong>👥 Perfect For:</strong> ${destination.details.perfectFor}</li>
+                        <li style="margin-bottom: 0.8rem; color: #5d6d7e;"><strong>✨ Highlights:</strong> ${destination.details.highlights}</li>
+                    </ul>
                 </div>
-            `;
-            break;
-            
-        case 'temples':
-            content = `
-                <h2>🏛️ Sacred Temple Destinations</h2>
-                <div class="modal-images">
-                    <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Angkor Wat temple complex at sunrise" style="width: 100%; margin-bottom: 1rem; border-radius: 10px;" crossorigin="anonymous">
-                    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Japanese temple with autumn colors" style="width: 100%; margin-bottom: 1rem; border-radius: 10px;" crossorigin="anonymous">
-                </div>
-                <h3>Magnificent Sacred Temple Experiences:</h3>
-                <div class="destination-list">
-                    <div class="destination-item">
-                        <h4>🕌 Angkor Wat, Cambodia - Ancient Wonder</h4>
-                        <p>The world's largest religious monument, showcasing magnificent Khmer architecture and intricate stone carvings. This UNESCO World Heritage site represents the pinnacle of classical Khmer art and spirituality.</p>
-                        <ul>
-                            <li><strong>Best time to visit:</strong> November to March (cool, dry season)</li>
-                            <li><strong>Top activities:</strong> Sunrise viewing, temple exploration, photography, cultural learning</li>
-                            <li><strong>Historical period:</strong> Built in early 12th century</li>
-                            <li><strong>Perfect for:</strong> History enthusiasts, photographers, spiritual seekers</li>
-                        </ul>
-                    </div>
-                    <div class="destination-item">
-                        <h4>⛩️ Fushimi Inari Shrine, Japan - Thousand Torii Gates</h4>
-                        <p>Famous for thousands of vermillion torii gates creating mystical tunnels up the sacred Mount Inari. This spiritual journey through nature offers a unique blend of Shinto tradition and natural beauty.</p>
-                        <ul>
-                            <li><strong>Best time to visit:</strong> March to May, September to November</li>
-                            <li><strong>Top activities:</strong> Hiking through torii tunnels, meditation, cultural immersion</li>
-                            <li><strong>Significance:</strong> Dedicated to Inari, Shinto deity of rice and prosperity</li>
-                            <li><strong>Perfect for:</strong> Spiritual journeys, hiking, cultural photography</li>
-                        </ul>
-                    </div>
-                    <div class="destination-item">
-                        <h4>🏛️ Borobudur, Indonesia - Buddhist Masterpiece</h4>
-                        <p>Magnificent 9th-century Buddhist temple featuring intricate stone reliefs and panoramic views of Java's volcanic landscape. This architectural marvel represents the Buddhist cosmology in stone.</p>
-                        <ul>
-                            <li><strong>Best time to visit:</strong> April to October (dry season)</li>
-                            <li><strong>Top activities:</strong> Sunrise tours, relief panel study, meditation, cultural workshops</li>
-                            <li><strong>Architecture:</strong> Mandala design with 2,672 relief panels and 504 Buddha statues</li>
-                            <li><strong>Perfect for:</strong> Spiritual exploration, architecture lovers, sunrise photography</li>
-                        </ul>
-                    </div>
-                </div>
-            `;
-            break;
-            
-        case 'countries':
-            content = `
-                <h2>🌍 Amazing Country Destinations</h2>
-                <div class="modal-images">
-                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mount Fuji and Japanese landscape" style="width: 100%; margin-bottom: 1rem; border-radius: 10px;" crossorigin="anonymous">
-                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="New Zealand scenic mountains and lakes" style="width: 100%; margin-bottom: 1rem; border-radius: 10px;" crossorigin="anonymous">
-                </div>
-                <h3>Diverse Country Adventures:</h3>
-                <div class="destination-list">
-                    <div class="destination-item">
-                        <h4>🗾 Japan - Land of Rising Sun</h4>
-                        <p>A perfect harmony of ancient traditions and cutting-edge technology. From the bustling streets of Tokyo to the serene temples of Kyoto, Japan offers an unparalleled cultural experience with stunning natural beauty.</p>
-                        <ul>
-                            <li><strong>Best time to visit:</strong> March to May (cherry blossoms), September to November (autumn colors)</li>
-                            <li><strong>Highlights:</strong> Cherry blossoms, ancient temples, modern cities, Mount Fuji, traditional cuisine</li>
-                            <li><strong>Must-visit cities:</strong> Tokyo, Kyoto, Osaka, Hiroshima, Nara</li>
-                            <li><strong>Perfect for:</strong> Cultural immersion, food lovers, technology enthusiasts, nature lovers</li>
-                        </ul>
-                    </div>
-                    <div class="destination-item">
-                        <h4>🥝 New Zealand - Adventure Paradise</h4>
-                        <p>The ultimate destination for outdoor enthusiasts, featuring dramatic landscapes from fjords to mountains, glaciers to beaches. Known as the adventure capital of the world with stunning natural beauty at every turn.</p>
-                        <ul>
-                            <li><strong>Best time to visit:</strong> December to March (summer), September to November (spring)</li>
-                            <li><strong>Top activities:</strong> Bungee jumping, hiking, scenic drives, wildlife watching, extreme sports</li>
-                            <li><strong>Must-see locations:</strong> Milford Sound, Queenstown, Bay of Islands, Rotorua, Hobbiton</li>
-                            <li><strong>Perfect for:</strong> Adventure seekers, nature photographers, Lord of the Rings fans</li>
-                        </ul>
-                    </div>
-                    <div class="destination-item">
-                        <h4>🇮🇸 Iceland - Land of Fire and Ice</h4>
-                        <p>A Nordic island nation featuring dramatic contrasts of glaciers and volcanoes, geysers and waterfalls. Experience the raw power of nature with opportunities to see the Northern Lights and explore unique geological wonders.</p>
-                        <ul>
-                            <li><strong>Best time to visit:</strong> June to August (midnight sun), September to March (Northern Lights)</li>
-                            <li><strong>Top activities:</strong> Glacier hiking, hot spring bathing, Northern Lights viewing, whale watching</li>
-                            <li><strong>Must-see attractions:</strong> Blue Lagoon, Golden Circle, Ring Road, Jökulsárlón Glacier Lagoon</li>
-                            <li><strong>Perfect for:</strong> Nature lovers, photographers, geology enthusiasts, Northern Lights chasers</li>
-                        </ul>
-                    </div>
-                </div>
-            `;
-            break;
-    }
+            </div>
+        `;
+    });
     
     modalContent.innerHTML = content;
     modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
 }
 
+// Get category title for display
+function getCategoryTitle(category) {
+    const titles = {
+        beaches: '🏖️ Paradise Beaches',
+        temples: '🏛️ Sacred Temples',
+        countries: '🌍 Amazing Countries'
+    };
+    return titles[category] || 'Destinations';
+}
+
+// Close modal
 function closeModal() {
     const modal = document.getElementById('recommendationModal');
     modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = 'auto'; // Restore scrolling
 }
 
-window.onclick = function(event) {
-    const modal = document.getElementById('recommendationModal');
-    if (event.target === modal) {
-        closeModal();
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
+// Search functionality
+function searchDestinations() {
+    const searchInput = document.getElementById('searchInput');
+    const searchTerm = searchInput.value.toLowerCase().trim();
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            const newsletter = formData.get('newsletter');
-            
-            if (!name || !email || !subject || !message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                showSuccessMessage();
-                contactForm.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
+    if (!searchTerm) {
+        alert('Please enter a search term');
+        return;
     }
-});
+    
+    const searchResults = [];
+    
+    // Search through all destinations
+    Object.keys(destinations).forEach(category => {
+        destinations[category].forEach(destination => {
+            const searchableText = `${destination.name} ${destination.description} ${destination.details.activities} ${destination.details.perfectFor}`.toLowerCase();
+            
+            if (searchableText.includes(searchTerm)) {
+                searchResults.push({
+                    ...destination,
+                    category: category
+                });
+            }
+        });
+    });
+    
+    displaySearchResults(searchResults, searchTerm);
+}
 
+// Display search results
+function displaySearchResults(results, searchTerm) {
+    const searchResultsSection = document.getElementById('searchResults');
+    const searchResultsContent = document.getElementById('searchResultsContent');
+    const recommendationsSection = document.getElementById('recommendations');
+    
+    if (results.length === 0) {
+        searchResultsContent.innerHTML = `
+            <div style="text-align: center; padding: 3rem;">
+                <h3 style="color: #e74c3c; margin-bottom: 1rem;">No destinations found</h3>
+                <p style="color: #5d6d7e;">No destinations match your search for "${searchTerm}". Try different keywords or browse our categories below.</p>
+            </div>
+        `;
+    } else {
+        let content = `<p style="margin-bottom: 2rem; color: #5d6d7e; font-size: 1.1rem;">Found ${results.length} destination${results.length > 1 ? 's' : ''} matching "${searchTerm}":</p>`;
+        
+        results.forEach(destination => {
+            content += `
+                <div class="search-result-card">
+                    <h3>${destination.name}</h3>
+                    <img src="${destination.image}" alt="${destination.name}" crossorigin="anonymous">
+                    <p>${destination.description}</p>
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                        <p><strong>Best Time:</strong> ${destination.details.bestTime}</p>
+                        <p><strong>Activities:</strong> ${destination.details.activities}</p>
+                        <p><strong>Perfect For:</strong> ${destination.details.perfectFor}</p>
+                    </div>
+                </div>
+            `;
+        });
+        
+        searchResultsContent.innerHTML = content;
+    }
+    
+    // Show search results and hide recommendations
+    searchResultsSection.style.display = 'block';
+    recommendationsSection.style.display = 'none';
+    
+    // Scroll to search results
+    searchResultsSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Clear search and show all destinations
+function clearSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const searchResultsSection = document.getElementById('searchResults');
+    const recommendationsSection = document.getElementById('recommendations');
+    
+    searchInput.value = '';
+    searchResultsSection.style.display = 'none';
+    recommendationsSection.style.display = 'block';
+    
+    // Scroll to recommendations
+    recommendationsSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Smooth scroll to recommendations section
+function scrollToRecommendations() {
+    const recommendationsSection = document.getElementById('recommendations');
+    recommendationsSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Contact form functionality
+function initContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactSubmit);
+    }
+}
+
+// Handle contact form submission
+function handleContactSubmit(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const formObject = {};
+    
+    // Convert FormData to object
+    for (let [key, value] of formData.entries()) {
+        formObject[key] = value;
+    }
+    
+    // Basic validation
+    if (!formObject.name || !formObject.email || !formObject.subject || !formObject.message) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formObject.email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+    
+    // Simulate form submission
+    showSuccessMessage();
+    e.target.reset();
+}
+
+// Show success message
 function showSuccessMessage() {
     const successMessage = document.getElementById('successMessage');
     if (successMessage) {
@@ -261,6 +348,7 @@ function showSuccessMessage() {
     }
 }
 
+// Close success message
 function closeSuccessMessage() {
     const successMessage = document.getElementById('successMessage');
     if (successMessage) {
@@ -269,110 +357,234 @@ function closeSuccessMessage() {
     }
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img');
-    
-    images.forEach(img => {
-        img.addEventListener('load', function() {
-            this.style.opacity = '1';
-        });
-
-        img.style.opacity = '0';
-        img.style.transition = 'opacity 0.5s ease';
-        
-        if (img.complete) {
-            img.style.opacity = '1';
-        }
-    });
-});
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll('.recommendation-card, .mission-card, .team-member, .info-item, .value-item');
-    
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        observer.observe(el);
-    });
-});
-
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    const heroImage = document.querySelector('.hero-image img');
-    
-    if (hero && heroImage) {
-        const rate = scrolled * -0.5;
-        heroImage.style.transform = `translateY(${rate}px)`;
-    }
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const heroTitle = document.querySelector('.hero-content h1');
-    if (heroTitle) {
-        const text = heroTitle.textContent;
-        heroTitle.textContent = '';
-        heroTitle.style.borderRight = '2px solid white';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                heroTitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            } else {
-                heroTitle.style.borderRight = 'none';
+// Handle Enter key for search
+function initSearchKeyHandler() {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchDestinations();
             }
-        };
-        
-        setTimeout(typeWriter, 1000);
+        });
     }
-});
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
+// Close modal when clicking outside
+function initModalCloseHandler() {
+    const modal = document.getElementById('recommendationModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
     
-    if (hamburger) {
-        hamburger.addEventListener('click', function() {
-            const bars = hamburger.querySelectorAll('.bar');
+    const successMessage = document.getElementById('successMessage');
+    if (successMessage) {
+        successMessage.addEventListener('click', function(e) {
+            if (e.target === successMessage) {
+                closeSuccessMessage();
+            }
+        });
+    }
+}
+
+// Handle escape key to close modals
+function initEscapeKeyHandler() {
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+            closeSuccessMessage();
+        }
+    });
+}
+
+// Lazy loading for images
+function initLazyLoading() {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+    
+    images.forEach(img => imageObserver.observe(img));
+}
+
+// Smooth scrolling for anchor links
+function initSmoothScrolling() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            if (hamburger.classList.contains('active')) {
-                bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                bars[1].style.opacity = '0';
-                bars[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-            } else {
-                bars[0].style.transform = 'none';
-                bars[1].style.opacity = '1';
-                bars[2].style.transform = 'none';
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
-    }
+    });
+}
+
+// Add loading animation
+function showLoading() {
+    const loadingDiv = document.createElement('div');
+    loadingDiv.id = 'loading';
+    loadingDiv.innerHTML = `
+        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+            <div style="text-align: center;">
+                <div style="width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid #e74c3c; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                <p style="margin-top: 1rem; color: #2c3e50; font-weight: 600;">Loading amazing destinations...</p>
+            </div>
+        </div>
+        <style>
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    `;
+    document.body.appendChild(loadingDiv);
+    
+    // Remove loading after 2 seconds
+    setTimeout(() => {
+        const loading = document.getElementById('loading');
+        if (loading) {
+            loading.remove();
+        }
+    }, 2000);
+}
+
+// Initialize all functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Show loading animation
+    showLoading();
+    
+    // Initialize all features
+    initMobileNav();
+    initContactForm();
+    initSearchKeyHandler();
+    initModalCloseHandler();
+    initEscapeKeyHandler();
+    initLazyLoading();
+    initSmoothScrolling();
+    
+    // Start auto-rotating images after a delay
+    setTimeout(() => {
+        autoRotateImages();
+    }, 3000);
+    
+    // Add some interactive effects
+    addInteractiveEffects();
 });
+
+// Add interactive effects
+function addInteractiveEffects() {
+    // Add hover effects to cards
+    const cards = document.querySelectorAll('.recommendation-card, .mission-card, .team-member, .info-item');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // Add parallax effect to hero section
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero');
+        
+        if (hero) {
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        }
+    });
+    
+    // Add fade-in animation for sections
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe sections for fade-in effect
+    const sections = document.querySelectorAll('.introduction, .recommendations, .about-content, .contact-content');
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
+    });
+}
+
+// Add search suggestions
+function initSearchSuggestions() {
+    const searchInput = document.getElementById('searchInput');
+    if (!searchInput) return;
+    
+    const suggestions = [
+        'beach', 'temple', 'south africa', 'iceland', 'diving', 'snorkeling', 
+        'cultural', 'adventure', 'honeymoon', 'luxury', 'spiritual', 
+        'photography', 'northern lights', 'safari', 'wildlife', 'thailand'
+    ];
+    
+    searchInput.addEventListener('input', function() {
+        const value = this.value.toLowerCase();
+        if (value.length > 2) {
+            const matches = suggestions.filter(s => s.includes(value));
+            // You can implement dropdown suggestions here
+        }
+    });
+}
+
+// Performance optimization
+function optimizePerformance() {
+    // Debounce scroll events
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(function() {
+            // Handle scroll events here
+        }, 16); // ~60fps
+    });
+    
+    // Preload critical images
+    const criticalImages = [
+        'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    ];
+    
+    criticalImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+// Initialize performance optimizations
+optimizePerformance();

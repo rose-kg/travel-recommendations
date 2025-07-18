@@ -25,6 +25,11 @@
                     <a href="contact.html" class="nav-link">Contact Us</a>
                 </li>
             </ul>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search destinations..." class="search-input">
+                <button onclick="searchDestinations()" class="search-btn">Search</button>
+                <button onclick="clearSearch()" class="clear-btn">Clear</button>
+            </div>
             <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -55,6 +60,15 @@
         </div>
     </section>
 
+    <!-- Search Results Section -->
+    <section class="search-results" id="searchResults" style="display: none;">
+        <div class="container">
+            <h2>Search Results</h2>
+            <div id="searchResultsContent"></div>
+            <button onclick="clearSearch()" class="back-btn">Back to All Destinations</button>
+        </div>
+    </section>
+
     <!-- Recommendation Categories -->
     <section class="recommendations" id="recommendations">
         <div class="container">
@@ -67,7 +81,7 @@
                     </div>
                     <div class="card-content">
                         <div class="image-gallery">
-                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tropical beach with crystal clear water and palm trees" class="gallery-image active" crossorigin="anonymous">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tropical beach with crystal clear water and palm trees" class="gallery-image active" crossorigin="anonymous">
                             <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pristine white sand beach with turquoise waters" class="gallery-image" crossorigin="anonymous">
                         </div>
                         <div class="image-controls">
@@ -86,8 +100,8 @@
                     </div>
                     <div class="card-content">
                         <div class="image-gallery">
-                            <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ancient temple complex with intricate architecture" class="gallery-image active" crossorigin="anonymous">
-                            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Majestic temple at golden hour" class="gallery-image" crossorigin="anonymous">
+                            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ancient temple complex with intricate architecture" class="gallery-image active" crossorigin="anonymous">
+                            <img src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Majestic Buddhist temple with golden spires" class="gallery-image" crossorigin="anonymous">
                         </div>
                         <div class="image-controls">
                             <button class="prev-btn" onclick="changeImage(this, -1)">❮</button>
@@ -105,8 +119,8 @@
                     </div>
                     <div class="card-content">
                         <div class="image-gallery">
-                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Scenic mountain landscape with traditional architecture" class="gallery-image active" crossorigin="anonymous">
-                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vibrant cultural landmarks and cityscapes" class="gallery-image" crossorigin="anonymous">
+                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mount Fuji and Japanese landscape" class="gallery-image active" crossorigin="anonymous">
+                            <img src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Iceland scenic landscapes with dramatic natural features" class="gallery-image" crossorigin="anonymous">
                         </div>
                         <div class="image-controls">
                             <button class="prev-btn" onclick="changeImage(this, -1)">❮</button>
